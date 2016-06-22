@@ -1,0 +1,10 @@
+$max-width: 960px;
+$breakpoint-small: 767px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 960px;
+
+@import "breakpoints";
+@import "the-flex-grid";
+
+// bower:scss
+// endbower
