@@ -10,5 +10,20 @@
 }
 
 .app-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
   padding-left: calc(33% + #{$gutter});
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  min-height: 100%;
+  transform: translateX(-100%);
+  opacity: 0;
+  width: 100%;
+  transition: transform .8s ease-out;
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 50;
+  }
 }

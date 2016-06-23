@@ -1,4 +1,4 @@
-angular.module('jbApp').controller('SpotifyCtrl', function() {
+angular.module('jbApp').controller('SpotifyCtrl', function($scope) {
   var vm = this;
-  vm.default = 'Spottyyyyyy';
+  $scope.$parent.global.active.card = 'spotify';
 });

@@ -1,9 +1,9 @@
 
-angular.module('jbApp').controller('HomeCtrl', function() {
+angular.module('jbApp').controller('HomeCtrl', function($scope) {
   var vm = this;
-  vm.default = 'Boopy';
+  $scope.$parent.global.active.card = 'home';
 });
-angular.module('jbApp').controller('SpotifyCtrl', function() {
+angular.module('jbApp').controller('SpotifyCtrl', function($scope) {
   var vm = this;
-  vm.default = 'Spottyyyyyy';
+  $scope.$parent.global.active.card = 'spotify';
 });

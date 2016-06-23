@@ -3,17 +3,20 @@ var jbApp = angular.module('jbApp', ['ui.router']);
 
 jbApp.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
-  
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'components/home/home.html',
-      controller: 'HomeCtrl as home'
-      
+      controller: 'HomeCtrl as home',
+      templateUrl: 'components/home/home.html'
     })
     .state('spotify', {
       url: '/spotify',
-      templateUrl: 'components/spotify/spotify.html',
-      controller: 'SpotifyCtrl as spotify'
+      controller: 'SpotifyCtrl as spotify',
+      templateUrl: 'components/spotify/spotify.html'
     })
+});
+
+jbApp.controller('GlobalCtrl', function() {
+  var vm = this;
+  vm.active = {};
 });

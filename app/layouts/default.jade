@@ -1,5 +1,5 @@
 doctype html
-html(data-ng-app="jbApp").no-js
+html(data-ng-app="jbApp" data-ng-controller="GlobalCtrl as global").no-js
   head
     meta(charset='utf-8')
     title Justin Burrow
@@ -20,8 +20,14 @@ html(data-ng-app="jbApp").no-js
   body
     .frame
       .sidebar
-      div(ui-view)
-        block content
+        h1 Sidebar
+        a(ui-sref="home") Home
+        a(ui-sref="spotify") Spotify
+      div
+        .home.app-layer(data-ng-class="{'active':global.active.card=='home'}")
+          div(ui-view)
+        .spotify.app-layer(data-ng-class="{'active':global.active.card=='spotify'}")
+          div(ui-view)
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.

@@ -1,4 +1,4 @@
-angular.module('jbApp').controller('HomeCtrl', function() {
+angular.module('jbApp').controller('HomeCtrl', function($scope) {
   var vm = this;
-  vm.default = 'Boopy';
+  $scope.$parent.global.active.card = 'home';
 });
