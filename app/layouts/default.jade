@@ -1,5 +1,5 @@
 doctype html
-html.no-js
+html(data-ng-app="jbApp").no-js
   head
     meta(charset='utf-8')
     title My Webapp
@@ -18,25 +18,11 @@ html.no-js
     // endbuild
 
   body
-
-    .container
-      .header
-        ul.nav.nav-pills.pull-right
-          li.active: a(href='#') Home
-          li: a(href='#') About
-          li: a(href='#') Contact
-
-        h3.text-muted My Webapp
-
-      .jumbotron
-        h1 'Allo, 'Allo!
-        p.lead Always a pleasure scaffolding your apps.
-        p: a.btn.btn-lg.btn-success(href='#') Splendid!
-
-      block content
-
-      .footer
-        p ♥ from the Yeoman team
+    .frame
+      .sidebar
+      .app-layer
+        div(ui-view)
+          block content
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
@@ -50,9 +36,14 @@ html.no-js
     // build:js scripts/vendor.js
     // bower:js
     script(src='/bower_components/angular/angular.js')
+    script(src='/bower_components/angular-ui-router/release/angular-ui-router.js')
     // endbower
     // endbuild
 
     // build:js scripts/main.js
     script(src='scripts/main.js')
+    // endbuild
+    
+    // build:js scripts/main.js
+    script(src='scripts/jbapp.js')
     // endbuild

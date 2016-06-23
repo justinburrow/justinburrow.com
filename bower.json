@@ -2,7 +2,8 @@
   "name": "justinburrow",
   "private": true,
   "dependencies": {
-    "angular": "^1.5.7"
+    "angular": "^1.5.7",
+    "angular-ui-router": "^0.3.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

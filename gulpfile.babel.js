@@ -9,7 +9,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('views', () => {
-  return gulp.src(['app/*.jade', '!app/**/_*.jade', '!app/layouts/*.jade'])
+  return gulp.src(['app/**/*.jade', '!app/**/_*.jade', '!app/layouts/*.jade'])
     .pipe($.plumber())
     .pipe($.jade({pretty: true}))
     .pipe(gulp.dest('.tmp'))
@@ -17,7 +17,7 @@ gulp.task('views', () => {
 });
 
 gulp.task('styles', () => {
-  return gulp.src('app/styles/*.scss')
+  return gulp.src(['app/styles/*.scss', 'app/components/**/*.scss'])
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.sass.sync({
@@ -29,6 +29,12 @@ gulp.task('styles', () => {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
     .pipe(reload({stream: true}));
+});
+
+gulp.task('components', () => {
+  return gulp.src('app/components/**/*.js')
+    .pipe($.concat('jbapp.js'))
+    .pipe(gulp.dest('app/scripts'));
 });
 
 gulp.task('scripts', () => {
@@ -59,7 +65,7 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('html', ['views', 'styles', 'scripts'], () => {
+gulp.task('html', ['views', 'styles', 'components', 'scripts'], () => {
   return gulp.src(['app/*.html', '.tmp/*.html'])
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if('*.js', $.uglify()))
@@ -99,7 +105,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['views', 'styles', 'scripts', 'fonts'], () => {
+gulp.task('serve', ['views', 'styles', 'components', 'scripts', 'fonts'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -118,8 +124,8 @@ gulp.task('serve', ['views', 'styles', 'scripts', 'fonts'], () => {
   ]).on('change', reload);
 
   gulp.watch('app/**/*.jade', ['views']);
-  gulp.watch('app/styles/**/*.scss', ['styles']);
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/**/*.scss', ['styles']);
+  gulp.watch('app/**/*.js', ['components','scripts']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
@@ -148,7 +154,7 @@ gulp.task('serve:test', ['scripts'], () => {
     }
   });
 
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/scripts/**/*.js', ['components', 'scripts']);
   gulp.watch('test/spec/**/*.js').on('change', reload);
   gulp.watch('test/spec/**/*.js', ['lint:test']);
 });

@@ -3,8 +3,13 @@ $breakpoint-small: 767px;
 $breakpoint-medium: 768px;
 $breakpoint-large: 960px;
 
+// import flex grid
 @import "breakpoints";
 @import "the-flex-grid";
+
+//import component styling
+@import "../components/global/global";
+@import "../components/home/home";
 
 // bower:scss
 // endbower
