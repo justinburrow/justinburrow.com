@@ -11,7 +11,7 @@ const reload = browserSync.reload;
 gulp.task('views', () => {
   return gulp.src(['app/**/*.jade', '!app/**/_*.jade', '!app/layouts/*.jade'])
     .pipe($.plumber())
-    .pipe($.jade({pretty: true}))
+    .pipe($.jade({pretty: true, basedir: 'app'}))
     .pipe(gulp.dest('.tmp'))
     .pipe(reload({stream: true}));
 });

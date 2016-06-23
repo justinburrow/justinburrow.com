@@ -1,3 +1,14 @@
-body {
-  background: white;
+.sidebar {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 33%;
+  background: blue;
+  padding: 0 $gutter;
+}
+
+.app-layer {
+  padding-left: calc(33% + #{$gutter});
 }

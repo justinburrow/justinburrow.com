@@ -3,9 +3,15 @@ $breakpoint-small: 767px;
 $breakpoint-medium: 768px;
 $breakpoint-large: 960px;
 
+@import 'normalize';
+
 // import flex grid
 @import "breakpoints";
 @import "the-flex-grid";
+
+// import helpers
+@import "variables";
+@import "utilities";
 
 //import component styling
 @import "../components/global/global";
